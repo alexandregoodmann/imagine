@@ -10,6 +10,8 @@ ANOTAÇÕES
 - ler qual annotation usar no spring
 - Documentação de arquitetura
 - Melhores práticas de Loggin
+- Error Handling
+- Gerar cenários de teste
 
 REFERENCIAS
 - https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-structuring-your-code
