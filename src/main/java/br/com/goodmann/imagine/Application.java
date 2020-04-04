@@ -1,4 +1,4 @@
-package br.com.goodmann.publisherrabbitmq;
+package br.com.goodmann.imagine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
-public class PublisherRabbitmqApplication {
+public class Application {
 
 	@Bean
 	ObjectMapper mapper() {
@@ -15,7 +15,7 @@ public class PublisherRabbitmqApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(PublisherRabbitmqApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

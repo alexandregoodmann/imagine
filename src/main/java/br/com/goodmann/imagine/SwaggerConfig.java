@@ -1,4 +1,4 @@
-package br.com.goodmann.publisherrabbitmq;
+package br.com.goodmann.imagine;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("br.com.goodmann.publisherrabbitmq"))
+				.apis(RequestHandlerSelectors.basePackage("br.com.goodmann.imagine"))
 				.paths(PathSelectors.any()).build();
 	}
 
