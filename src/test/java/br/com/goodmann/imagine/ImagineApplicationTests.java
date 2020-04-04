@@ -1,4 +1,4 @@
-package br.com.goodmann.publisherrabbitmq;
+package br.com.goodmann.imagine;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

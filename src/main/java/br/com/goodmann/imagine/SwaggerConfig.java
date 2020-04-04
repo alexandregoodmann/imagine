@@ -18,8 +18,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("br.com.goodmann.imagine"))
-				.paths(PathSelectors.any()).build();
+				.apis(RequestHandlerSelectors.basePackage("br.com.goodmann.imagine")).paths(PathSelectors.any())
+				.build();
 	}
 
 	@Override
