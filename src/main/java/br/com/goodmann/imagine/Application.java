@@ -1,6 +1,5 @@
 package br.com.goodmann.imagine;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,12 +10,10 @@ import com.mongodb.MongoClient;
 @SpringBootApplication
 public class Application {
 
-	@Value("${DB_HOST}")
-	private String HOST;
-
+	/*
 	public @Bean MongoClient mongoClient() {
-		return new MongoClient(HOST);
-	}
+		return new MongoClient();
+	}*/
 
 	@Bean
 	ObjectMapper mapper() {

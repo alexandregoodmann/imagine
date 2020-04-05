@@ -1,1 +1,11 @@
-sudo mvn spring-boot:run -DskipTests=true
+sudo mvn clean install
+
+sudo docker stop $(sudo docker ps -aq)
+
+#sudo docker rm $(sudo docker ps -aq)
+
+sudo docker rm imagine_api_1
+
+sudo docker rmi imagine_api
+
+sudo docker-compose up

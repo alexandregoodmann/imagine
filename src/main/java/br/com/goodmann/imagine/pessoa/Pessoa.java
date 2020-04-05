@@ -1,7 +1,12 @@
 package br.com.goodmann.imagine.pessoa;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Pessoa {
 
+	@Id
 	private String id;
 
 	private String nome;
@@ -11,6 +16,17 @@ public class Pessoa {
 	private String telefone;
 
 	private String email;
+
+	public Pessoa() {
+	}
+
+	public Pessoa(String nome, String cpf, String telefone, String email) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.email = email;
+	}
 
 	public String getId() {
 		return id;
@@ -50,6 +66,12 @@ public class Pessoa {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email
+				+ "]";
 	}
 
 }
