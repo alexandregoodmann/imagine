@@ -17,17 +17,6 @@ public class Pessoa {
 
 	private String email;
 
-	public Pessoa() {
-	}
-
-	public Pessoa(String nome, String cpf, String telefone, String email) {
-		super();
-		this.nome = nome;
-		this.cpf = cpf;
-		this.telefone = telefone;
-		this.email = email;
-	}
-
 	public String getId() {
 		return id;
 	}
@@ -66,12 +55,6 @@ public class Pessoa {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email
-				+ "]";
 	}
 
 }

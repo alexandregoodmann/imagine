@@ -1,4 +1,4 @@
-package br.com.goodmann.imagine.pessoa;
+package br.com.goodmann.imagine.imagem;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,31 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/pessoa")
-public class PessoaController {
+@RequestMapping(value = "/imagem")
+public class ImagemController {
 
 	@Autowired
-	private PessoaRepository repo;
+	private ImagemRepository repo;
 
 	@PostMapping
-	public ResponseEntity<Pessoa> add(@RequestBody Pessoa pessoa) {
-		return new ResponseEntity<Pessoa>(this.repo.save(pessoa), HttpStatus.CREATED);
+	public ResponseEntity<Imagem> add(@RequestBody Imagem imagem) {
+		return new ResponseEntity<Imagem>(this.repo.save(imagem), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Pessoa> getById(@PathVariable String id) {
-		Pessoa pessoa = this.repo.findById(id).get();
-		return new ResponseEntity<Pessoa>(pessoa, HttpStatus.OK);
+	public ResponseEntity<Imagem> getById(@PathVariable String id) {
+		Imagem imagem = this.repo.findById(id).get();
+		return new ResponseEntity<Imagem>(imagem, HttpStatus.OK);
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Pessoa>> getAll() {
-		return new ResponseEntity<List<Pessoa>>(this.repo.findAll(), HttpStatus.OK);
-	}
-
-	@PatchMapping
-	public ResponseEntity<Pessoa> update(@RequestBody Pessoa pessoa) {
-		return new ResponseEntity<Pessoa>(this.repo.save(pessoa), HttpStatus.OK);
+	public ResponseEntity<List<Imagem>> getAll() {
+		return new ResponseEntity<List<Imagem>>(this.repo.findAll(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
