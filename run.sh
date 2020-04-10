@@ -1,4 +1,4 @@
-sudo mvn clean install
+sudo mvn clean install -DskipTests=true
 
 sudo docker stop $(sudo docker ps -aq)
 

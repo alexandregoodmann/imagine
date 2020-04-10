@@ -1,5 +1,9 @@
 package br.com.goodmann.imagine.pessoa;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,12 +13,19 @@ public class Pessoa {
 	@Id
 	private String id;
 
+	@NotEmpty(message = "Nome não pode ser vazio")
 	private String nome;
 
+	@NotEmpty
+	@Pattern(regexp = "[0-9]{11}", message = "CPF deverá ser somente os números")
 	private String cpf;
 
+	@NotEmpty
+	@Pattern(regexp = "(^$|[0-9]{11})", message = "Número de telefone DDD + número. Ex: 51999334568")
 	private String telefone;
 
+	@Email(message = "Formato de email inválido")
+	@NotEmpty
 	private String email;
 
 	public String getId() {
