@@ -2,6 +2,8 @@ package br.com.goodmann.imagine.pessoa;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/pessoa")
 public class PessoaController {
+
+	private static final Logger logger = LoggerFactory.getLogger(PessoaController.class);
 
 	@Autowired
 	private PessoaRepository repo;
@@ -47,5 +51,4 @@ public class PessoaController {
 		this.repo.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
-
 }
