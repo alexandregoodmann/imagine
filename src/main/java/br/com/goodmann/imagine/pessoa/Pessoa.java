@@ -28,6 +28,13 @@ public class Pessoa {
 	@NotEmpty
 	private String email;
 
+	public Pessoa() {
+	}
+
+	public Pessoa(String id) {
+		this.id = id;
+	}
+
 	public String getId() {
 		return id;
 	}
