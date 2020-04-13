@@ -1,7 +1,5 @@
 package br.com.goodmann.imagine.pessoa;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,21 +31,17 @@ public class PessoaController {
 		return new ResponseEntity<String>(service.add(pessoa), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/{cpf}")
-	public ResponseEntity<Pessoa> getById(@PathVariable String cpf) {
+	@GetMapping("cpf")
+	public ResponseEntity<Pessoa> getBycpf(@RequestParam String cpf) {
 		return new ResponseEntity<Pessoa>(repo.findBycpf(cpf), HttpStatus.OK);
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Pessoa>> getAll() {
-		return new ResponseEntity<List<Pessoa>>(this.repo.findAll(), HttpStatus.OK);
+	public ResponseEntity<Pessoa> getById(@PathVariable String id) {
+		return new ResponseEntity<Pessoa>(repo.findById(id).get(), HttpStatus.OK);
 	}
 
 	/*
-	 * @GetMapping("/{id}") public ResponseEntity<Pessoa> getById(@PathVariable
-	 * String id) { Pessoa pessoa = this.service.findById(id).get(); return new
-	 * ResponseEntity<Pessoa>(pessoa, HttpStatus.OK); }
-	 * 
 	 * 
 	 * @PatchMapping public ResponseEntity<Pessoa> update(@RequestBody Pessoa
 	 * pessoa) { return new ResponseEntity<Pessoa>(this.service.save(pessoa),

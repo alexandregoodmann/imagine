@@ -35,14 +35,14 @@ public class ImagemController {
 		return new ResponseEntity<String>(this.repo.save(img).getId(), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping
 	public ResponseEntity<Imagem> getById(@PathVariable String id) {
 		return new ResponseEntity<Imagem>(repo.findById(id).get(), HttpStatus.OK);
 	}
 
-	@GetMapping
-	public ResponseEntity<List<Imagem>> getAll() {
-		return new ResponseEntity<List<Imagem>>(this.repo.findAll(), HttpStatus.OK);
+	@GetMapping("/")
+	public ResponseEntity<List<Imagem>> findAllByPessoa(@RequestParam String idPessoa) {
+		return new ResponseEntity<List<Imagem>>(this.repo.findAllByPessoa(new Pessoa(idPessoa)), HttpStatus.OK);
 	}
 
 }
