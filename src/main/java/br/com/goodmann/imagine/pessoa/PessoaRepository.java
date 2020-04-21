@@ -1,8 +1,8 @@
 package br.com.goodmann.imagine.pessoa;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface PessoaRepository extends MongoRepository<Pessoa, String> {
+public interface PessoaRepository extends CrudRepository<Pessoa, String> {
 
 	public Pessoa findBycpf(String cpf);
 }

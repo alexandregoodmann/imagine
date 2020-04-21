@@ -11,7 +11,7 @@ public class PessoaService {
 	@Autowired
 	private PessoaRepository repo;
 
-	public String add(Pessoa pessoa) {
+	public String create(Pessoa pessoa) {
 
 		// valida o cpf informado
 		if (!ValidaCPF.isCPF(pessoa.getCpf())) {
@@ -21,6 +21,16 @@ public class PessoaService {
 		// valida se a pessoa já está cadastrada
 		if (this.repo.findBycpf(pessoa.getCpf()) != null) {
 			throw new RuntimeException("CPF já está cadastrado");
+		}
+
+		return this.repo.save(pessoa).getId();
+	}
+
+	public String update(Pessoa pessoa) {
+
+		// valida o cpf informado
+		if (!ValidaCPF.isCPF(pessoa.getCpf())) {
+			throw new RuntimeException("CPF inválido");
 		}
 
 		return this.repo.save(pessoa).getId();

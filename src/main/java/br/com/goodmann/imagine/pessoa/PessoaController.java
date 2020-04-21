@@ -1,5 +1,7 @@
 package br.com.goodmann.imagine.pessoa;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,31 +30,43 @@ public class PessoaController {
 	private PessoaRepository repo;
 
 	@PostMapping
-	public ResponseEntity<String> add(@RequestBody Pessoa pessoa) {
-		return new ResponseEntity<String>(service.add(pessoa), HttpStatus.CREATED);
-	}
-
-	@GetMapping("cpf")
-	public ResponseEntity<Pessoa> getBycpf(@RequestParam String cpf) {
-		return new ResponseEntity<Pessoa>(repo.findBycpf(cpf), HttpStatus.OK);
-	}
-
-	@GetMapping
-	public ResponseEntity<Pessoa> getById(@PathVariable String id) {
-		return new ResponseEntity<Pessoa>(repo.findById(id).get(), HttpStatus.OK);
+	public ResponseEntity<String> create(@RequestBody Pessoa pessoa) {
+		return new ResponseEntity<String>(service.create(pessoa), HttpStatus.CREATED);
 	}
 
 	/*
-	 * 
-	 * @PatchMapping public ResponseEntity<Pessoa> update(@RequestBody Pessoa
-	 * pessoa) { return new ResponseEntity<Pessoa>(this.service.save(pessoa),
-	 * HttpStatus.OK); }
-	 */
+	@PutMapping
+	public ResponseEntity<String> update(@RequestBody Pessoa pessoa) {
+		return new ResponseEntity<String>(service.update(pessoa), HttpStatus.OK);
+	}*/
+
+	@PatchMapping
+	public ResponseEntity<String> updatePart(@RequestBody Pessoa pessoa) {
+		return new ResponseEntity<String>(service.update(pessoa), HttpStatus.OK);
+	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable("id") String id) {
+	public ResponseEntity<Void> delete(@PathVariable(required = true, name = "id") String id) {
 		this.repo.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Pessoa> find(@PathVariable(required = true, name = "id") String id) {
+		Optional<Pessoa> obj = this.repo.findById(id);
+		if (obj.isPresent()) {
+			return new ResponseEntity<Pessoa>(obj.get(), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
+
+	@GetMapping("/cpf/{cpf}")
+	public ResponseEntity<Pessoa> findByCPF(@PathVariable(required = true, name = "cpf") String cpf) {
+		Pessoa obj = this.repo.findBycpf(cpf);
+		if (obj != null) {
+			return new ResponseEntity<Pessoa>(obj, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 
 }
