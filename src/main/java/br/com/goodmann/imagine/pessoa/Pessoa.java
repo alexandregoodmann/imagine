@@ -28,6 +28,8 @@ public class Pessoa {
 	@NotEmpty
 	private String email;
 
+	private String obs;
+
 	public Pessoa() {
 	}
 
@@ -73,6 +75,20 @@ public class Pessoa {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getObs() {
+		return obs;
+	}
+
+	public void setObs(String obs) {
+		this.obs = obs;
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email
+				+ "]";
 	}
 
 }

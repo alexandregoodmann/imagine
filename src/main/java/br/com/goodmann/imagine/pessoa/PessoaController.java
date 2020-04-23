@@ -34,14 +34,15 @@ public class PessoaController {
 		return new ResponseEntity<String>(service.create(pessoa), HttpStatus.CREATED);
 	}
 
-	/*
 	@PutMapping
 	public ResponseEntity<String> update(@RequestBody Pessoa pessoa) {
+		logger.trace(pessoa.toString());
 		return new ResponseEntity<String>(service.update(pessoa), HttpStatus.OK);
-	}*/
+	}
 
 	@PatchMapping
-	public ResponseEntity<String> updatePart(@RequestBody Pessoa pessoa) {
+	public ResponseEntity<String> updatePartial(@RequestBody Pessoa pessoa) {
+		logger.trace(pessoa.toString());
 		return new ResponseEntity<String>(service.update(pessoa), HttpStatus.OK);
 	}
 
