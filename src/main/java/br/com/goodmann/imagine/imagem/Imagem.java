@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.goodmann.imagine.pessoa.Pessoa;
 
 @Document
@@ -12,10 +14,15 @@ public class Imagem {
 	@Id
 	private String id;
 
+	@JsonIgnore
 	@DBRef(lazy = true)
 	private Pessoa pessoa;
 
 	private byte[] imagem;
+
+	public String getIdPessoa() {
+		return this.pessoa == null ? null : this.pessoa.getId();
+	}
 
 	public String getId() {
 		return id;

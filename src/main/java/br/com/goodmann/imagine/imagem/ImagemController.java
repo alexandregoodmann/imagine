@@ -17,14 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 import br.com.goodmann.imagine.pessoa.Pessoa;
 
 @RestController
-@RequestMapping(value = "/pessoa/imagem")
+@RequestMapping(value = "v1/pessoas/")
 public class ImagemController {
 
 	@Autowired
 	private ImagemRepository repo;
 
 	@PostMapping
-	public ResponseEntity<String> add(@RequestParam String idPessoa, @RequestParam("file") MultipartFile file)
+	public ResponseEntity<String> create(@RequestParam String idPessoa, @RequestParam("file") MultipartFile file)
 			throws IOException {
 
 		byte[] bytes = file.getBytes();
@@ -35,13 +35,15 @@ public class ImagemController {
 		return new ResponseEntity<String>(this.repo.save(img).getId(), HttpStatus.CREATED);
 	}
 
-	@GetMapping
-	public ResponseEntity<Imagem> getById(@PathVariable String id) {
-		return new ResponseEntity<Imagem>(repo.findById(id).get(), HttpStatus.OK);
+	@GetMapping("/{idPessoa}/imagens/{idImagem}")
+	public ResponseEntity<Imagem> find(@PathVariable("idPessoa") String idPessoa,
+			@PathVariable("idImagem") String idImagem) {
+		return new ResponseEntity<Imagem>(repo.findById(idImagem).get(), HttpStatus.OK);
 	}
 
-	@GetMapping("/")
-	public ResponseEntity<List<Imagem>> findAllByPessoa(@RequestParam String idPessoa) {
+	@GetMapping("/{idPessoa}/imagens")
+	public ResponseEntity<List<Imagem>> findAll(
+			@PathVariable(required = true, name = "idPessoa") String idPessoa) {
 		return new ResponseEntity<List<Imagem>>(this.repo.findAllByPessoa(new Pessoa(idPessoa)), HttpStatus.OK);
 	}
 
