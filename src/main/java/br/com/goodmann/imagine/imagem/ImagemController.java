@@ -21,18 +21,16 @@ import br.com.goodmann.imagine.pessoa.Pessoa;
 public class ImagemController {
 
 	@Autowired
+	private ImagemService service;
+
+	@Autowired
 	private ImagemRepository repo;
 
-	@PostMapping
-	public ResponseEntity<String> create(@RequestParam String idPessoa, @RequestParam("file") MultipartFile file)
-			throws IOException {
+	@PostMapping("/{idPessoa}/imagens")
+	public ResponseEntity<String> create(@PathVariable("idPessoa") String idPessoa,
+			@RequestParam("file") MultipartFile file) throws IOException {
 
-		byte[] bytes = file.getBytes();
-		Imagem img = new Imagem();
-		img.setPessoa(new Pessoa(idPessoa));
-		img.setImagem(bytes);
-
-		return new ResponseEntity<String>(this.repo.save(img).getId(), HttpStatus.CREATED);
+		return new ResponseEntity<String>(this.service.create(idPessoa, file), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/{idPessoa}/imagens/{idImagem}")
@@ -42,8 +40,7 @@ public class ImagemController {
 	}
 
 	@GetMapping("/{idPessoa}/imagens")
-	public ResponseEntity<List<Imagem>> findAll(
-			@PathVariable(required = true, name = "idPessoa") String idPessoa) {
+	public ResponseEntity<List<Imagem>> findAll(@PathVariable(required = true, name = "idPessoa") String idPessoa) {
 		return new ResponseEntity<List<Imagem>>(this.repo.findAllByPessoa(new Pessoa(idPessoa)), HttpStatus.OK);
 	}
 

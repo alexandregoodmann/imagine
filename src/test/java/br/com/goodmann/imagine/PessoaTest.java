@@ -20,7 +20,7 @@ import org.springframework.http.ResponseEntity;
 import br.com.goodmann.imagine.pessoa.Pessoa;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc // need this in Spring Boot test
+@AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PessoaTest {
 
@@ -39,7 +39,7 @@ public class PessoaTest {
 
 		Pessoa p = new Pessoa();
 		p.setNome("Alexandre Ferreira");
-		p.setEmail("alexndregoodmann@gmail.com");
+		p.setEmail("alexandregoodmann@gmail.com");
 		p.setCpf("60003880206");
 		p.setTelefone("51981204068");
 
