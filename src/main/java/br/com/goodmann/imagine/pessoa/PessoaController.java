@@ -41,6 +41,7 @@ public class PessoaController {
 
 	@GetMapping("/cpf/{cpf}")
 	public ResponseEntity<Pessoa> findByCPF(@PathVariable(required = true, name = "cpf") String cpf) {
+		logger.trace("[FIND BY CPF] - Pessoa CPF:" + cpf);
 		Pessoa obj = this.repo.findBycpf(cpf);
 		if (obj != null) {
 			return new ResponseEntity<Pessoa>(obj, HttpStatus.OK);
@@ -70,6 +71,7 @@ public class PessoaController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable(required = true, name = "id") String id) {
+		logger.trace("[DELETE] - Pessoa ID:" + id);
 		this.repo.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
