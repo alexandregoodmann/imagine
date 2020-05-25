@@ -95,8 +95,8 @@ public class PessoaTest {
 		assertEquals(response2.getBody().getNome(), nome);
 	}
 
-	@Test
-	@Order(5)
+	// @Test
+	// @Order(5)
 	public void deleteTest() {
 
 		logger.info("[TEST] Deleta o objeto inserido. Busca pelo CPF e deleta. Depois busca novamente para confirmar.");
